@@ -1,0 +1,7 @@
+Flask
+Flask-WTF
+Flask-Login
+python-dotenv
+email-validator
+phonenumbers
+gunicorn

@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Enquiry Details | Lena Techs
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+
+<body class="admin-dashboard-page">
+
+
+<header class="admin-navbar">
+
+    <div class="admin-brand">
+
+        <div class="admin-brand-icon">
+            LT
+        </div>
+
+        <div>
+
+            <strong>
+                LENA TECHS
+            </strong>
+
+            <span>
+                ADMIN
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="admin-user">
+
+        <span>
+            Welcome, {{ current_user.username }}
+        </span>
+
+        <a href="{{ url_for('admin_logout') }}">
+            Logout
+        </a>
+
+    </div>
+
+</header>
+
+
+<main class="admin-main">
+
+
+    <!-- PAGE HEADER -->
+
+    <div class="admin-heading">
+
+        <div>
+
+            <p class="admin-eyebrow">
+                CLIENT REQUEST
+            </p>
+
+            <h1>
+                Enquiry Details
+            </h1>
+
+            <p>
+                View the complete project request from this client.
+            </p>
+
+        </div>
+
+
+        <a
+            href="{{ url_for('admin_dashboard') }}"
+            class="admin-view-site"
+        >
+            ← Back to Enquiries
+        </a>
+
+    </div>
+
+
+    <!-- CLIENT INFORMATION -->
+
+    <section class="enquiry-details-card">
+
+
+        <div class="enquiry-details-header">
+
+            <div class="client-profile">
+
+                <div class="client-avatar">
+                    {{ enquiry["name"][0]|upper }}
+                </div>
+
+                <div>
+
+                    <h2>
+                        {{ enquiry["name"] }}
+                    </h2>
+
+                    <p>
+                        {{ enquiry["email"] }}
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <span
+                class="status-badge
+                {{ enquiry['status']|lower|replace(' ', '-') }}"
+            >
+                {{ enquiry["status"] }}
+            </span>
+
+            <div class="priority-control">
+               <label for="priority">
+                    PRIORITY
+               </label>
+                
+               <form
+                   action="{{ url_for('update_enquiry_priority' , enquiry_id=enquiry['id']) }}"
+                   method="POST"
+                >
+                 
+                    <input
+                        type="hidden"
+                        name="csrf_token"
+                        value="{{ csrf_token() }}"
+                    >
+
+                   <select
+                       name="priority"
+                       id="priority"
+                       onchange="this.form.submit()"
+                       class="priority-select" {{ enquiry['priority'] |lower}}
+                     >
+                       <option
+                           value="High"
+                           {% if enquiry["priority"] == "High" %}selected{% endif %}
+                       >
+                           High
+                       </option>
+
+                       <option
+                           value="Medium"
+                           {% if enquiry["priority"] == 'Medium' %}selected{% endif %}
+                       >
+                           Medium
+                       </option>
+
+                       <option
+                           value="Low"
+                           {% if enquiry["priority"] == 'Low' %}selected{% endif %}
+                       >
+                           Low
+                       </option>
+                   </select>
+            </form>
+            </div>
+
+        </div>
+
+
+        <!-- DETAILS -->
+
+        <div class="enquiry-info-grid">
+
+
+            <div class="enquiry-info-item">
+
+                <span>
+                    COMPANY / BUSINESS
+                </span>
+
+                <strong>
+                    {{ enquiry["company"] or "Not provided" }}
+                </strong>
+
+            </div>
+
+            <div class="enquiry-info-item">
+                <span>
+                    PHONE / WHATSAPP
+                </span>
+
+                {% if enquiry["phone"] %}
+                    
+                    <a
+                        href="tel:{{ enquiry['phone'] }}"
+                        class="details-phone-link"
+                    >
+                        {{ enquiry['phone'] }}
+                    </a>
+
+                    <a
+                        href="https://wa.me/{{ whatsapp_number(enquiry['phone']) }}"
+                        target="_blank"
+                        rel="nopener noreferrer"
+                        class="details-whatsapp-link"
+                    >
+                        WhatsApp
+                    </a>
+                {% else %}
+                
+                    <strong>
+                        Not provided
+                    </strong>
+                {% endif %}
+            </div>
+
+            <div class="enquiry-info-item">
+
+                <span>
+                    SERVICE REQUIRED
+                </span>
+
+                <strong>
+                    {{ enquiry["service"] or "General Enquiry" }}
+                </strong>
+
+            </div>
+
+
+            <div class="enquiry-info-item">
+
+                <span>
+                    SUBMITTED
+                </span>
+
+                <strong>
+                    {{ enquiry["created_at"] }}
+                </strong>
+
+            </div>
+
+
+            <div class="enquiry-info-item">
+
+                <span>
+                    CLIENT EMAIL
+                </span>
+
+                <strong>
+                    {{ enquiry["email"] }}
+                </strong>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- MESSAGE -->
+
+        <div class="enquiry-message">
+
+            <span>
+                PROJECT DESCRIPTION
+            </span>
+
+            <div>
+                {{ enquiry["message"] }}
+            </div>
+
+        </div>
+
+        <section class="internal-notes">
+
+            <div class="notes-header">
+              <div>
+                  <p class="admin-eyebrow">PRIVATE FOLLOW-UP</p>
+                  <h2>Internal Notes</h2>
+                  <p>These notes are private and are only visible to Lena Techs administrators.</p>
+              </div>
+            </div>
+
+            <form
+               method="POST"
+               action="{{ url_for('add_enquiry_note', enquiry_id=enquiry['id']) }}"
+               class="note-form"
+            >
+
+            <input
+                type="hidden"
+                name="csrf_token"
+                value="{{ csrf_token() }}"
+            >
+
+               <textarea
+                    name="note"
+                    rows="5"
+                    placeholder="Write a follow-up note..."
+                    required
+              ></textarea>
+
+              <button type="submit" class="save-note-button">
+                  Save Note
+              </button>
+
+            </form>
+
+            {% if notes %}
+
+                <div class="notes-list">
+
+                   {% for note in notes %}
+
+                       <div class="note-card">
+
+                          <div class="note-card-header">
+                              <span>Follow-up Note</span>
+                              <small>{{ note["created_at"] }}</small>
+                          </div>
+
+                          <p>{{ note["note"] }}</p>
+
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+            {% else %}
+
+                <div class="no-notes">
+                    <p>No internal notes yet.</p>
+                </div>
+
+            {% endif %}
+
+        </section>
+
+        <section class="follow-up-section">
+
+    <div class="follow-up-header">
+        <div>
+            <p class="admin-eyebrow">CLIENT FOLLOW-UP</p>
+            <h2>Schedule Follow-up</h2>
+
+            <p>
+                Set a date and reminder for
+                <strong>{{ enquiry["name"] }}</strong>.
+            </p>
+        </div>
+    </div>
+
+    <form
+        method="POST"
+        action="{{ url_for('set_follow_up', enquiry_id=enquiry['id']) }}"
+        class="follow-up-form"
+    >
+
+        <input
+            type="hidden"
+            name="csrf_token"
+            value="{{ csrf_token() }}"
+        >
+
+        <div class="follow-up-field">
+
+            <label for="follow_up_date">
+                Follow-up Date
+            </label>
+
+            <input
+                type="date"
+                id="follow_up_date"
+                name="follow_up_date"
+                value="{{ enquiry['follow_up_date'] or '' }}"
+                min="{{ current_date }}"
+                required
+            >
+
+        </div>
+
+        <div class="follow-up-field">
+
+            <label for="follow_up_note">
+                Follow-up Reminder
+            </label>
+
+            <textarea
+                id="follow_up_note"
+                name="follow_up_note"
+                rows="4"
+                placeholder="e.g. Follow up on quotation and confirm project requirements..."
+                required
+            >{{ enquiry['follow_up_note'] or '' }}</textarea>
+
+        </div>
+
+        <button
+            type="submit"
+            class="save-follow-up-button"
+        >
+            Save Follow-up
+        </button>
+
+    </form>
+
+    {% if enquiry["follow_up_date"] %}
+
+        <div class="current-follow-up">
+
+            <div>
+                <span>Scheduled Follow-up</span>
+
+                <strong>
+                    {{ enquiry["follow_up_date"] }}
+                </strong>
+            </div>
+
+            <div>
+                <span>Reminder</span>
+
+                <p>
+                    {{ enquiry["follow_up_note"] }}
+                </p>
+            </div>
+
+        </div>
+
+    {% endif %}
+
+</section>
+
+        <section class="client-reply-section">
+
+    <div class="reply-header">
+        <div>
+            <p class="admin-eyebrow">CLIENT COMMUNICATION</p>
+            <h2>Reply to Client</h2>
+            <p>
+                Send a direct email to
+                <strong>{{ enquiry["name"] }}</strong>
+                at
+                <strong>{{ enquiry["email"] }}</strong>.
+            </p>
+        </div>
+    </div>
+
+    <form
+        method="POST"
+        action="{{ url_for('reply_to_client', enquiry_id=enquiry['id']) }}"
+        class="reply-form"
+    >
+
+    <input
+        type="hidden"
+        name="csrf_token"
+        value="{{ csrf_token() }}"
+    >
+
+        <div class="reply-field">
+            <label for="subject">Subject</label>
+
+            <input
+                type="text"
+                id="subject"
+                name="subject"
+                placeholder="e.g. Re: Your Website Project Enquiry"
+                required
+            >
+        </div>
+
+        <div class="reply-field">
+            <label for="message">Message</label>
+
+            <textarea
+                id="message"
+                name="message"
+                rows="8"
+                placeholder="Write your response to the client..."
+                required
+            ></textarea>
+        </div>
+
+        <button
+            type="submit"
+            class="send-reply-button"
+        >
+            Send Reply
+        </button>
+
+    </form>
+
+</section>
+
+
+        <!-- ACTIONS -->
+
+        <div class="enquiry-actions">
+
+          <a
+             href="mailto:{{ enquiry['email'] }}?subject=Lena%20Techs%20Project%20Enquiry"
+             class="enquiry-action primary"
+           >
+             ✉ Reply by Email
+          </a>
+
+
+         <a
+             href="{{ url_for('admin_dashboard') }}"
+             class="enquiry-action secondary"
+         >
+             ← Back to Dashboard
+         </a>
+
+
+         <form
+           method="POST"
+           action="{{ url_for('delete_enquiry', enquiry_id=enquiry['id']) }}"
+           onsubmit="return confirm('Are you sure you want to permanently delete this enquiry? This action cannot be undone.');"
+          >
+
+            <input
+                type="hidden"
+                name="csrf_token"
+                value="{{ csrf_token() }}"
+            >
+
+           <button
+              type="submit"
+              class="enquiry-action delete-action"
+            >
+              🗑 Delete Enquiry
+            </button>
+
+          </form>
+
+        </div>
+
+
+    </section>
+
+
+</main>
+
+
+</body>
+
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Lena Techs Admin Login</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+
+<body class="admin-page">
+
+
+<div class="admin-login">
+
+    <div class="admin-logo">
+
+        <div class="admin-logo-icon">
+            LT
+        </div>
+
+        <h1>
+            LENA TECHS
+        </h1>
+
+        <p>
+            ADMIN PORTAL
+        </p>
+
+    </div>
+
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+
+        {% if messages %}
+
+            {% for category, message in messages %}
+
+                <div class="flash-message {{ category }}">
+                    {{ message }}
+                </div>
+
+            {% endfor %}
+
+        {% endif %}
+
+    {% endwith %}
+
+
+    <form
+        method="POST"
+        class="admin-login-form"
+    >
+
+    <input
+        type="hidden"
+        name="csrf_token"
+        value="{{ csrf_token() }}"
+    >
+
+        <label>
+            Username
+        </label>
+
+        <input
+            type="text"
+            name="username"
+            placeholder="Admin username"
+            required
+        >
+
+
+        <label>
+            Password
+        </label>
+
+        <input
+            type="password"
+            name="password"
+            placeholder="Admin password"
+            required
+        >
+
+
+        <button type="submit">
+            Sign In
+        </button>
+
+    </form>
+
+
+    <a
+        href="/"
+        class="back-home"
+    >
+        ← Back to website
+    </a>
+
+</div>
+
+
+</body>
+
+</html>

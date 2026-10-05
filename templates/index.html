@@ -1,0 +1,1579 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Lena Techs | Software Development & Digital Solutions</title>
+
+    <meta
+        name="description"
+        content="Lena Techs builds custom software, web applications, mobile apps, AI solutions and digital platforms for modern businesses."
+    >
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+</head>
+
+<body>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <div class="flash-container">
+            {% for category, message in messages %}
+                {% if category in ["success", "error"] %}
+                <div class="flash-message {{ category }}">
+                    {{ message }}
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endwith %}
+    
+<!-- ======================================
+     NAVIGATION
+======================================= -->
+
+<header class="navbar">
+
+    <a href="#home" class="logo">
+
+        <span class="logo-box">
+            LT
+        </span>
+
+        <span>
+            LENA TECHS
+        </span>
+
+    </a>
+
+
+    <nav>
+
+        <a href="#home">
+            Home
+        </a>
+
+        <a href="#services">
+            Services
+        </a>
+
+        <a href="#solutions">
+            Solutions
+        </a>
+
+        <a href="#about">
+            About
+        </a>
+
+        <a href="#projects">
+            Projects
+        </a>
+
+        <a href="#contact">
+            Contact
+        </a>
+
+    </nav>
+
+
+    <a
+        href="#contact"
+        class="nav-btn"
+    >
+        Start A Project
+    </a>
+
+</header>
+
+
+
+<!-- ======================================
+     HERO
+======================================= -->
+
+<section
+    class="hero"
+    id="home"
+>
+
+
+    <!-- Background effects -->
+
+    <div class="hero-grid"></div>
+
+    <div class="glow glow-one"></div>
+
+    <div class="glow glow-two"></div>
+
+
+
+    <div class="hero-content">
+
+
+        <!-- LEFT SIDE -->
+
+        <div class="hero-text">
+
+
+            <p class="eyebrow">
+
+                SOFTWARE DEVELOPMENT
+                <span>•</span>
+                DIGITAL SOLUTIONS
+
+            </p>
+
+
+            <h1>
+
+                We Build
+
+                <span>
+                    Software
+                </span>
+
+                That Moves
+
+                <strong>
+                    Businesses Forward.
+                </strong>
+
+            </h1>
+
+
+            <p class="hero-description">
+
+                Lena Techs builds modern software,
+                web applications, mobile apps and
+                intelligent digital solutions designed
+                around the way your business works.
+
+            </p>
+
+
+            <div class="hero-buttons">
+
+
+                <a
+                    href="#contact"
+                    class="primary-btn"
+                >
+
+                    Start A Project
+
+                </a>
+
+
+                <a
+                    href="#services"
+                    class="secondary-btn"
+                >
+
+                    Explore Solutions
+
+                </a>
+
+
+            </div>
+
+
+            <div class="hero-stats">
+
+                <div>
+
+                    <strong>
+                        01
+                    </strong>
+
+                    <span>
+                        Custom Solutions
+                    </span>
+
+                </div>
+
+
+                <div>
+
+                    <strong>
+                        02
+                    </strong>
+
+                    <span>
+                        Modern Technology
+                    </span>
+
+                </div>
+
+
+                <div>
+
+                    <strong>
+                        03
+                    </strong>
+
+                    <span>
+                        Business Focused
+                    </span>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- ==================================
+             3D SOFTWARE DISPLAY
+        =================================== -->
+
+        <div class="hero-3d">
+
+
+            <!-- Floating LT -->
+
+            <div class="floating-coin">
+
+                LT
+
+            </div>
+
+
+
+            <!-- Code floating card -->
+
+            <div class="floating-code">
+
+                <span>
+                    &lt;/&gt;
+                </span>
+
+                <small>
+                    DEVELOPMENT
+                </small>
+
+            </div>
+
+
+
+            <!-- Main computer -->
+
+            <div class="software-card">
+
+
+                <!-- browser -->
+
+                <div class="browser-bar">
+
+
+                    <div class="browser-dots">
+
+                        <span></span>
+
+                        <span></span>
+
+                        <span></span>
+
+                    </div>
+
+
+                    <div class="browser-address">
+
+                        lenatechs.dev
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- software screen -->
+
+                <div class="software-screen">
+
+
+                    <!-- sidebar -->
+
+                    <aside class="code-sidebar">
+
+                        <div class="sidebar-logo">
+
+                            LT
+
+                        </div>
+
+
+                        <span class="active">
+                            Dashboard
+                        </span>
+
+                        <span>
+                            Projects
+                        </span>
+
+                        <span>
+                            Analytics
+                        </span>
+
+                        <span>
+                            Settings
+                        </span>
+
+                    </aside>
+
+
+
+                    <!-- dashboard -->
+
+                    <div class="dashboard">
+
+
+                        <div class="dashboard-header">
+
+                            <div>
+
+                                <small>
+                                    LENA TECHS
+                                </small>
+
+                                <h3>
+                                    Software Dashboard
+                                </h3>
+
+                            </div>
+
+
+                            <div class="status">
+
+                                ● Online
+
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="dashboard-cards">
+
+
+                            <div>
+
+                                <small>
+                                    PROJECTS
+                                </small>
+
+                                <strong>
+                                    24
+                                </strong>
+
+                            </div>
+
+
+                            <div>
+
+                                <small>
+                                    APPLICATIONS
+                                </small>
+
+                                <strong>
+                                    18
+                                </strong>
+
+                            </div>
+
+
+                            <div>
+
+                                <small>
+                                    SYSTEMS
+                                </small>
+
+                                <strong>
+                                    12
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- code -->
+
+                        <div class="code-window">
+
+
+                            <div class="code-title">
+
+                                <span>
+                                    software.py
+                                </span>
+
+                            </div>
+
+
+                            <div class="code-lines">
+
+                                <p>
+                                    <span>01</span>
+                                    <b>def</b>
+                                    build_solution():
+                                </p>
+
+                                <p>
+                                    <span>02</span>
+                                    &nbsp;&nbsp;client =
+                                    business.requirements()
+                                </p>
+
+                                <p>
+                                    <span>03</span>
+                                    &nbsp;&nbsp;solution =
+                                    LenaTechs.build(client)
+                                </p>
+
+                                <p>
+                                    <span>04</span>
+                                    &nbsp;&nbsp;return solution
+                                </p>
+
+                                <p class="success">
+                                    <span>05</span>
+                                    ✓ deployment successful
+                                </p>
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ======================================
+     SERVICES
+======================================= -->
+
+<section
+    class="services"
+    id="services"
+>
+
+
+    <div class="section-heading">
+
+        <p class="eyebrow dark">
+            WHAT WE BUILD
+        </p>
+
+
+        <h2>
+
+            Technology Built Around
+
+            <span>
+                Your Business.
+            </span>
+
+        </h2>
+
+
+        <p>
+
+            We combine software engineering,
+            modern design and business thinking
+            to create digital products that solve
+            real problems.
+
+        </p>
+
+    </div>
+
+
+
+    <div class="service-grid">
+
+
+        <div class="service-card">
+
+            <div class="service-number">
+                01
+            </div>
+
+            <h3>
+                Custom Software
+            </h3>
+
+            <p>
+
+                Business management systems,
+                enterprise applications and
+                custom software built around
+                your workflow.
+
+            </p>
+
+            <a href="#contact">
+                Build With Us →
+            </a>
+
+        </div>
+
+
+
+        <div class="service-card">
+
+            <div class="service-number">
+                02
+            </div>
+
+            <h3>
+                Web Applications
+            </h3>
+
+            <p>
+
+                Powerful web applications,
+                dashboards, portals and platforms
+                accessible from any device.
+
+            </p>
+
+            <a href="#contact">
+                Build With Us →
+            </a>
+
+        </div>
+
+
+
+        <div class="service-card">
+
+            <div class="service-number">
+                03
+            </div>
+
+            <h3>
+                Mobile Applications
+            </h3>
+
+            <p>
+
+                Modern Android and mobile
+                applications designed to connect
+                businesses with their customers.
+
+            </p>
+
+            <a href="#contact">
+                Build With Us →
+            </a>
+
+        </div>
+
+
+
+        <div class="service-card">
+
+            <div class="service-number">
+                04
+            </div>
+
+            <h3>
+                AI & Automation
+            </h3>
+
+            <p>
+
+                Intelligent software solutions
+                that automate processes and help
+                businesses work smarter.
+
+            </p>
+
+            <a href="#contact">
+                Build With Us →
+            </a>
+
+        </div>
+
+
+
+        <div class="service-card">
+
+            <div class="service-number">
+                05
+            </div>
+
+            <h3>
+                Websites & E-Commerce
+            </h3>
+
+            <p>
+
+                Professional business websites,
+                online stores and digital platforms
+                built to convert visitors into
+                customers.
+
+            </p>
+
+            <a href="#contact">
+                Build With Us →
+            </a>
+
+        </div>
+
+
+
+        <div class="service-card">
+
+            <div class="service-number">
+                06
+            </div>
+
+            <h3>
+                APIs & Databases
+            </h3>
+
+            <p>
+
+                Secure databases, APIs and system
+                integrations that keep your digital
+                products connected.
+
+            </p>
+
+            <a href="#contact">
+                Build With Us →
+            </a>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+<!-- ================================
+     PRICING SECTION
+================================ -->
+
+<section class="pricing" id="pricing">
+
+    <div class="section-heading">
+
+        <p class="eyebrow dark">
+            PRICING & QUOTATIONS
+        </p>
+
+        <h2>
+            Choose What You
+            <span>Need To Build.</span>
+        </h2>
+
+        <p>
+            Whether you need a professional website,
+            an online store or a complete software
+            system, we create solutions around your
+            requirements and budget.
+        </p>
+
+    </div>
+
+
+    <div class="pricing-grid">
+
+        <!-- WEBSITE -->
+
+        <div class="price-card">
+
+            <div class="price-top">
+
+                <span class="price-label">
+                    STARTER
+                </span>
+
+                <h3>
+                    Business Website
+                </h3>
+
+                <p>
+                    A professional online presence
+                    for businesses, organizations
+                    and personal brands.
+                </p>
+
+            </div>
+
+
+            <div class="price">
+
+                <small>FROM</small>
+
+                <strong>
+                    KSh 18,000
+                </strong>
+
+            </div>
+
+
+            <ul>
+
+                <li>✓ Professional website design</li>
+
+                <li>✓ Mobile responsive design</li>
+
+                <li>✓ Business information pages</li>
+
+                <li>✓ Contact / inquiry section</li>
+
+                <li>✓ Social media integration</li>
+
+                <li>✓ Basic SEO structure</li>
+
+            </ul>
+
+
+            <a
+                href="#contact"
+                class="price-btn"
+            >
+                Get Started
+            </a>
+
+        </div>
+
+
+        <!-- E-COMMERCE -->
+
+        <div class="price-card featured">
+
+            <div class="popular">
+                POPULAR
+            </div>
+
+
+            <div class="price-top">
+
+                <span class="price-label">
+                    BUSINESS
+                </span>
+
+                <h3>
+                    E-Commerce Website
+                </h3>
+
+                <p>
+                    Sell products online with a
+                    professional digital storefront
+                    built for your business.
+                </p>
+
+            </div>
+
+
+            <div class="price">
+
+                <small>
+                    QUOTATION
+                </small>
+
+                <strong>
+                    Custom
+                </strong>
+
+            </div>
+
+
+            <ul>
+
+                <li>✓ Everything in Business Website</li>
+
+                <li>✓ Product catalogue</li>
+
+                <li>✓ Shopping cart</li>
+
+                <li>✓ Order management</li>
+
+                <li>✓ Payment integration</li>
+
+                <li>✓ Customer management</li>
+
+            </ul>
+
+
+            <a
+                href="#contact"
+                class="price-btn featured-btn"
+            >
+                Request A Quote
+            </a>
+
+        </div>
+
+
+        <!-- SOFTWARE -->
+
+        <div class="price-card">
+
+            <div class="price-top">
+
+                <span class="price-label">
+                    ADVANCED
+                </span>
+
+                <h3>
+                    Custom Software
+                </h3>
+
+                <p>
+                    Powerful software systems designed
+                    specifically around your business
+                    processes and requirements.
+                </p>
+
+            </div>
+
+
+            <div class="price">
+
+                <small>
+                    QUOTATION
+                </small>
+
+                <strong>
+                    Custom
+                </strong>
+
+            </div>
+
+
+            <ul>
+
+                <li>✓ Business management systems</li>
+
+                <li>✓ Web applications</li>
+
+                <li>✓ Mobile applications</li>
+
+                <li>✓ Database development</li>
+
+                <li>✓ API integrations</li>
+
+                <li>✓ AI & automation solutions</li>
+
+            </ul>
+
+
+            <a
+                href="#contact"
+                class="price-btn"
+            >
+                Request A Quote
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="quotation-note">
+
+        <div class="quote-icon">
+            ?
+        </div>
+
+        <div>
+
+            <h3>
+                Need Something Different?
+            </h3>
+
+            <p>
+                Every project is different. Tell us what
+                you want to build and we'll prepare a
+                quotation based on your requirements,
+                features and project complexity.
+            </p>
+
+        </div>
+
+        <a href="#contact">
+            Request A Quotation →
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- ======================================
+     SOLUTIONS
+======================================= -->
+
+<section
+    class="solutions"
+    id="solutions"
+>
+
+
+    <div class="solutions-container">
+
+
+        <div class="solutions-text">
+
+            <p class="eyebrow">
+                OUR APPROACH
+            </p>
+
+
+            <h2>
+
+                From Idea
+
+                <span>
+                    To Software.
+                </span>
+
+            </h2>
+
+
+            <p>
+
+                Every great digital product starts
+                with an idea. We help turn that idea
+                into a working, scalable and
+                professional software solution.
+
+            </p>
+
+
+            <div class="process">
+
+
+                <div>
+
+                    <strong>
+                        01
+                    </strong>
+
+                    <div>
+
+                        <h4>
+                            Discover
+                        </h4>
+
+                        <p>
+                            Understand your business,
+                            goals and requirements.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div>
+
+                    <strong>
+                        02
+                    </strong>
+
+                    <div>
+
+                        <h4>
+                            Design
+                        </h4>
+
+                        <p>
+                            Create the structure,
+                            interface and experience.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div>
+
+                    <strong>
+                        03
+                    </strong>
+
+                    <div>
+
+                        <h4>
+                            Develop
+                        </h4>
+
+                        <p>
+                            Build and test your
+                            software solution.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div>
+
+                    <strong>
+                        04
+                    </strong>
+
+                    <div>
+
+                        <h4>
+                            Launch
+                        </h4>
+
+                        <p>
+                            Deploy your product
+                            and support its growth.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+        <div class="solutions-visual">
+
+
+            <div class="solution-orb">
+
+                <span>
+                    CODE
+                </span>
+
+                <strong>
+                    CREATE
+                </strong>
+
+                <span>
+                    DEPLOY
+                </span>
+
+            </div>
+
+
+            <div class="tech-tag tag-one">
+                PYTHON
+            </div>
+
+            <div class="tech-tag tag-two">
+                JAVA
+            </div>
+
+            <div class="tech-tag tag-three">
+                REACT
+            </div>
+
+            <div class="tech-tag tag-four">
+                AI
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ======================================
+     ABOUT
+======================================= -->
+
+<section
+    class="about"
+    id="about"
+>
+
+
+    <div class="about-container">
+
+
+        <div class="about-logo">
+
+            <div class="about-logo-inner">
+
+                LT
+
+            </div>
+
+        </div>
+
+
+
+        <div>
+
+            <p class="eyebrow">
+                ABOUT LENA TECHS
+            </p>
+
+
+            <h2>
+
+                We Don't Just Write Code.
+
+                <span>
+                    We Solve Problems.
+                </span>
+
+            </h2>
+
+
+            <p>
+
+                Lena Techs is a software development
+                company focused on building practical,
+                modern and scalable technology
+                solutions for businesses.
+
+            </p>
+
+
+            <p>
+
+                We believe technology should make
+                businesses simpler, faster and more
+                connected.
+
+            </p>
+
+
+            <a
+                href="#contact"
+                class="primary-btn"
+            >
+
+                Work With Us
+
+            </a>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- ======================================
+     PROJECTS
+======================================= -->
+
+<section
+    class="projects"
+    id="projects"
+>
+
+
+    <div class="section-heading">
+
+        <p class="eyebrow dark">
+            WHAT WE CAN BUILD
+        </p>
+
+
+        <h2>
+
+            Digital Products
+
+            <span>
+                With Purpose.
+            </span>
+
+        </h2>
+
+    </div>
+
+
+
+    <div class="project-grid">
+
+
+        <div class="project-card">
+
+            <span>
+                BUSINESS
+            </span>
+
+            <h3>
+                Management Systems
+            </h3>
+
+            <p>
+                Custom platforms that help
+                businesses manage operations,
+                customers and data.
+            </p>
+
+        </div>
+
+
+        <div class="project-card">
+
+            <span>
+                MOBILE
+            </span>
+
+            <h3>
+                Mobile Applications
+            </h3>
+
+            <p>
+                Mobile experiences that keep
+                your customers connected
+                wherever they are.
+            </p>
+
+        </div>
+
+
+        <div class="project-card">
+
+            <span>
+                AI
+            </span>
+
+            <h3>
+                Intelligent Solutions
+            </h3>
+
+            <p>
+                AI-powered applications,
+                automation and intelligent
+                business tools.
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- ======================================
+     CTA
+======================================= -->
+
+<section class="cta">
+
+
+    <p class="eyebrow">
+        HAVE AN IDEA?
+    </p>
+
+
+    <h2>
+
+        Let's Turn Your Idea
+
+        <span>
+            Into Software.
+        </span>
+
+    </h2>
+
+
+    <p>
+
+        Tell us what you want to build.
+        We'll help you turn the concept
+        into a digital solution.
+
+    </p>
+
+
+    <a
+        href="#contact"
+        class="primary-btn"
+    >
+
+        Start Your Project
+
+    </a>
+
+</section>
+
+
+
+<!-- ======================================
+     CONTACT
+======================================= -->
+
+<section
+    class="contact"
+    id="contact"
+>
+
+
+    <div class="contact-info">
+
+
+        <p class="eyebrow dark">
+            START A PROJECT
+        </p>
+
+
+        <h2>
+
+            Let's Build
+
+            <span>
+                Something Great.
+            </span>
+
+        </h2>
+
+
+        <p>
+
+            Have a business idea, software
+            project or digital problem you
+            want to solve?
+
+            Let's talk.
+
+        </p>
+
+
+        <div class="contact-item">
+
+            <strong>
+                Phone
+            </strong>
+
+            <span>
+                0796 456 070
+            </span>
+
+        </div>
+
+
+        <div class="contact-item">
+
+            <strong>
+                Email
+            </strong>
+
+            <span>
+                lenatechsolution@gmail.com
+            </span>
+
+        </div>
+
+
+    </div>
+
+
+
+    <form
+        class="contact-form"
+        action="/contact"
+        method="POST"
+    >
+
+    <input
+    type="hidden"
+    name="csrf_token"
+    value="{{ csrf_token() }}"
+    >
+
+    <div class="honeypot-field" aria-hidden="true">
+        
+        <label for="website">
+            Website
+        </label>
+
+        <input
+            type="text"
+            name="website"
+            id="website"
+            tabindex="-1"
+            autocomplete="off"
+        >
+    </div>
+
+
+        <input
+            type="text"
+            name="name"
+            placeholder="Your Name"
+            required
+        >
+
+
+        <input
+            type="email"
+            name="email"
+            placeholder="Your Email"
+            required
+        >
+
+        <input
+            type="text"
+            name="phone"
+            placeholder="Phone / WhatsApp Number (+country code)"
+        >
+
+        <input
+            type="text"
+            name="company"
+            placeholder="Company / Business"
+        >
+
+
+        <select name="service">
+
+            <option value="">
+                What do you want to build?
+            </option>
+
+            <option value="Custom Software">
+                Custom Software
+            </option>
+
+            <option value="Web Application">
+                Web Application
+            </option>
+
+            <option value="Mobile Application">
+                Mobile Application
+            </option>
+
+            <option value="Website / E-Commerce">
+                Website / E-Commerce
+            </option>
+
+            <option value="AI / Automation">
+                AI / Automation
+            </option>
+
+            <option value="Database / API">
+                Database / API
+            </option>
+
+            <option value="Other">
+                Other
+            </option>
+
+        </select>
+
+
+        <textarea
+            rows="6"
+            placeholder="Tell us about your project..."
+            name="message"
+            required
+        ></textarea>
+
+
+        <button type="submit">
+
+            Send Project Request
+
+        </button>
+
+
+    </form>
+
+</section>
+
+
+
+<!-- ======================================
+     FOOTER
+======================================= -->
+
+<footer>
+
+
+    <div class="footer-logo">
+
+        <span class="logo-box">
+            LT
+        </span>
+
+        LENA TECHS
+
+    </div>
+
+
+    <p>
+        © 2026 Lena Techs. All Rights Reserved.
+    </p>
+
+
+    <p>
+        Software Development • Digital Solutions
+    </p>
+
+</footer>
+
+<a
+    href="https://wa.me/254796456070?text=Hello%20Lena%20Techs,%20I%20would%20like%20to%20discuss%20a%20project."
+    class="whatsapp-button"
+    target="_blank"
+    rel="noopener"
+>
+    <span>☏</span>
+    WhatsApp Us
+</a>
+
+<script>
+    setTimeout(function () {
+        const alerts = document.querySelectorAll(".flash-message");
+
+        alerts.forEach(function (alert) {
+            alert.style.transition = "opacity 0.5s ease, transform 0.5s ease";
+            alert.style.opacity = "0";
+            alert.style.transform = "translateX(30px)";
+
+            setTimeout(function () {
+                alert.remove();
+            }, 500);
+        });
+    }, 4000);
+</script>
+
+</body>
+
+</html>

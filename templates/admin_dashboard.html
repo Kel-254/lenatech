@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Lena Techs | Admin Dashboard</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+
+<body class="admin-dashboard-page">
+
+
+<!-- ================================
+     ADMIN NAVBAR
+================================ -->
+
+<header class="admin-navbar">
+
+    <div class="admin-brand">
+
+        <div class="admin-brand-icon">
+            LT
+        </div>
+
+        <div>
+
+            <strong>
+                LENA TECHS
+            </strong>
+
+            <span>
+                ADMIN
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="admin-user">
+
+        <span>
+            Welcome, {{ current_user.username }}
+        </span>
+
+        <a href="{{ url_for('admin_logout') }}">
+            Logout
+        </a>
+
+    </div>
+
+</header>
+
+
+<!-- ================================
+     DASHBOARD
+================================ -->
+
+<main class="admin-main">
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <div class="flash-container">
+            {% for category, message in messages %}
+               {% if category in["admin_success", "admin_error"] %}
+                <div class="flash-message {{ category }}">
+                    {{ message }}
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endwith %}
+
+
+    <div class="admin-heading">
+
+        <div>
+
+            <p class="admin-eyebrow">
+                ADMINISTRATION
+            </p>
+
+            <h1>
+                Dashboard
+            </h1>
+
+            <p>
+                Manage your Lena Techs enquiries and
+                keep track of potential clients.
+            </p>
+
+        </div>
+
+
+        <a
+            href="/"
+            class="admin-view-site"
+        >
+            View Website →
+        </a>
+
+    </div>
+
+
+    <!-- ================================
+         STATISTICS
+    ================================= -->
+
+    <section class="admin-stats">
+
+    <div class="admin-stat-card">
+        <div class="admin-stat-icon">T</div>
+        <div>
+            <span>TOTAL ENQUIRIES</span>
+            <strong>{{ total_enquiries }}</strong>
+        </div>
+    </div>
+
+    <div class="admin-stat-card">
+        <div class="admin-stat-icon">N</div>
+        <div>
+            <span>NEW</span>
+            <strong>{{ new_enquiries }}</strong>
+        </div>
+    </div>
+
+    <div class="admin-stat-card">
+        <div class="admin-stat-icon">C</div>
+        <div>
+            <span>CONTACTED</span>
+            <strong>{{ contacted_enquiries }}</strong>
+        </div>
+    </div>
+
+    <div class="admin-stat-card">
+        <div class="admin-stat-icon">Q</div>
+        <div>
+            <span>QUOTED</span>
+            <strong>{{ quoted_enquiries }}</strong>
+        </div>
+    </div>
+
+    <div class="admin-stat-card">
+        <div class="admin-stat-icon">P</div>
+        <div>
+            <span>IN PROGRESS</span>
+            <strong>{{ in_progress_enquiries }}</strong>
+        </div>
+    </div>
+
+    <div class="admin-stat-card">
+        <div class="admin-stat-icon">✓</div>
+          <div>
+             <span>COMPLETED</span>
+             <strong>{{ completed_enquiries }}</strong>
+         </div>
+     </div>
+
+    </section>
+
+<section class="admin-chart-section">
+
+    <div class="admin-chart-header">
+        <div>
+            <p class="admin-eyebrow">ENQUIRY OVERVIEW</p>
+            <h2>Project Pipeline</h2>
+            <p>Track the current stage of your client enquiries.</p>
+        </div>
+    </div>
+
+    <div class="pipeline-chart">
+
+        <div class="pipeline-item">
+            <div class="pipeline-label">
+                <span>New</span>
+                <strong>{{ new_enquiries }}</strong>
+            </div>
+
+            <div class="pipeline-bar">
+                <div
+                    class="pipeline-fill"
+                    data-count="{{ new_enquiries }}"
+                    data-total="{{ total_enquiries }}"
+                ></div>
+            </div>
+        </div>
+
+        <div class="pipeline-item">
+            <div class="pipeline-label">
+                <span>Contacted</span>
+                <strong>{{ contacted_enquiries }}</strong>
+            </div>
+
+            <div class="pipeline-bar">
+                <div
+                    class="pipeline-fill"
+                    data-count="{{ contacted_enquiries }}"
+                    data-total="{{ total_enquiries }}"
+                ></div>
+            </div>
+        </div>
+
+        <div class="pipeline-item">
+            <div class="pipeline-label">
+                <span>Quoted</span>
+                <strong>{{ quoted_enquiries }}</strong>
+            </div>
+
+            <div class="pipeline-bar">
+                <div
+                    class="pipeline-fill"
+                    data-count="{{ quoted_enquiries }}"
+                    data-total="{{ total_enquiries }}"
+                ></div>
+            </div>
+        </div>
+
+        <div class="pipeline-item">
+            <div class="pipeline-label">
+                <span>In Progress</span>
+                <strong>{{ in_progress_enquiries }}</strong>
+            </div>
+
+            <div class="pipeline-bar">
+                <div
+                    class="pipeline-fill"
+                    data-count="{{ in_progress_enquiries }}"
+                    data-total="{{ total_enquiries }}"
+                ></div>
+            </div>
+        </div>
+
+        <div class="pipeline-item">
+            <div class="pipeline-label">
+                <span>Completed</span>
+                <strong>{{ completed_enquiries }}</strong>
+            </div>
+
+            <div class="pipeline-bar">
+                <div
+                    class="pipeline-fill"
+                    data-count="{{ completed_enquiries }}"
+                    data-total="{{ total_enquiries }}"
+                ></div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="admin-followups-section">
+
+    <div class="admin-followups-header">
+        <div>
+            <p class="admin-eyebrow">CLIENT MANAGEMENT</p>
+            <h2>Upcoming Follow-ups</h2>
+            <p>Keep track of scheduled client follow-ups and reminders.</p>
+        </div>
+    </div>
+
+    {% if follow_ups %}
+
+        <div class="followups-list">
+
+            {% for follow_up in follow_ups %}
+
+                <div class="followup-card">
+
+                    <div class="followup-date">
+                        <span>FOLLOW-UP</span>
+                        <strong>
+                            {{ follow_up["follow_up_date"] }}
+                        </strong>
+                    </div>
+
+                    <div class="followup-client">
+                        <strong>
+                            {{ follow_up["name"] }}
+                        </strong>
+
+                        {% if follow_up["company"] %}
+                            <span>
+                                {{ follow_up["company"] }}
+                            </span>
+                        {% endif %}
+                    </div>
+
+                    <div class="followup-reminder">
+                        <span>REMINDER</span>
+                        <p>
+                            {{ follow_up["follow_up_note"] }}
+                        </p>
+                    </div>
+
+                    <a
+                        href="{{ url_for(
+                            'enquiry_details',
+                            enquiry_id=follow_up['id']
+                        ) }}"
+                        class="followup-view-button"
+                    >
+                        View Enquiry →
+                    </a>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    {% else %}
+
+        <div class="no-followups">
+            <strong>No follow-ups scheduled</strong>
+            <p>
+                Scheduled client follow-ups will appear here.
+            </p>
+        </div>
+
+    {% endif %}
+
+</section>
+
+<!-- ================================
+       ENQUIRIES
+================================= -->
+
+    <section class="enquiries-section">
+
+    <div class="enquiries-header">
+
+        <div>
+            <p class="admin-eyebrow">
+                CLIENT REQUESTS
+            </p>
+
+            <h2>
+                Recent Enquiries
+            </h2>
+
+            <span class="enquiries count">
+                {{ enquiries | length }} request {% if enquiries | length != 1 %}s{% endif %}
+            </span>
+
+            <p class="enquiries-description">
+                Manage incoming client requests and track their progress.
+            </p>
+
+            <a
+                href="{{ url_for('export_enquiries') }}"
+                class="export-enquiries-button"
+            >
+                ↓ Export CSV
+            </a>
+
+            <a
+                href="{{ url_for('backup_database')}}"
+                class="backup-database-button"
+            >
+                ↓ Backup Database
+            </a>
+        </div>
+
+        <!-- SEARCH & FILTER -->
+        <form
+            method="GET"
+            action="{{ url_for('admin_dashboard') }}"
+            class="enquiry-filters"
+        >
+
+            <div class="search-box">
+
+                <span>🔎</span>
+
+                <input
+                    type="text"
+                    name="search"
+                    placeholder="Search enquiries..."
+                    value="{{ search }}"
+                >
+
+            </div>
+
+            <select
+                name="status"
+                class="filter-select"
+            >
+
+                <option value="">
+                    All Statuses
+                </option>
+
+                <option
+                    value="New"
+                    {% if status_filter == "New" %}
+                        selected
+                    {% endif %}
+                >
+                    New
+                </option>
+
+                <option
+                    value="Contacted"
+                    {% if status_filter == "Contacted" %}
+                        selected
+                    {% endif %}
+                >
+                    Contacted
+                </option>
+
+                <option
+                    value="Quoted"
+                    {% if status_filter == "Quoted" %}
+                        selected
+                    {% endif %}
+                >
+                    Quoted
+                </option>
+
+                <option
+                    value="In Progress"
+                    {% if status_filter == "In Progress" %}
+                        selected
+                    {% endif %}
+                >
+                    In Progress
+                </option>
+
+                <option
+                    value="Completed"
+                    {% if status_filter == "Completed" %}
+                        selected
+                    {% endif %}
+                >
+                    Completed
+                </option>
+
+            </select>
+
+            <button
+                type="submit"
+                class="filter-button"
+            >
+                Search
+            </button>
+
+            {% if search or status_filter %}
+
+                <a
+                    href="{{ url_for('admin_dashboard') }}"
+                    class="clear-filter"
+                >
+                    Clear
+                </a>
+
+            {% endif %}
+
+        </form>
+
+    </div>
+
+
+    {% if enquiries %}
+
+        <div class="enquiries-table-wrapper">
+
+            <table class="enquiries-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Client</th>
+
+                        <th>Phone</th>
+
+                        <th>Company</th>
+
+                        <th>Service</th>
+
+                        <th>Message</th>
+
+                        <th>Status</th>
+
+                        <th>Date</th>
+
+                        <th>Action</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    {% for enquiry in enquiries %}
+
+                        <tr>
+
+                            <!-- CLIENT -->
+                            <td>
+
+                                <div class="client-info">
+
+                                    <a
+                                        href="{{ url_for('enquiry_details', enquiry_id=enquiry['id']) }}"
+                                        class="client-name-link"
+                                    >
+                                        {{ enquiry["name"] }}
+                                    </a>
+
+                                    <small>
+                                        {{ enquiry["email"] }}
+                                    </small>
+
+                                </div>
+
+                            </td>
+
+                            <!-- PHONE -->
+                            <td>
+
+                                {% if enquiry["phone"] %}
+
+                                    <a
+                                        href="tel:{{ enquiry['phone'] }}"
+                                        class="client-phone"
+                                    >
+                                        {{ enquiry["phone"] }}
+                                    </a>
+
+                                {% else %}
+                                    <span class="no-phone">
+                                        Not provided
+                                    </span>
+
+                                {% endif %}
+                            </td>
+
+
+                            <!-- COMPANY -->
+                            <td>
+
+                                <span class="company-name">
+
+                                    {{ enquiry["company"] or "—" }}
+
+                                </span>
+
+                            </td>
+
+
+                            <!-- SERVICE -->
+                            <td>
+
+                                <span class="service-badge">
+
+                                    {{ enquiry["service"] or "General Enquiry" }}
+
+                                </span>
+
+                            </td>
+
+
+                            <!-- MESSAGE -->
+                            <td>
+
+                                <div class="message-preview">
+
+                                    {{ enquiry["message"] }}
+
+                                </div>
+
+                            </td>
+
+
+                            <!-- STATUS -->
+                            <td>
+
+                                <form
+                                    method="POST"
+                                    action="{{ url_for('update_enquiry_status', enquiry_id=enquiry['id']) }}"
+                                    class="status-form"
+                                >
+
+                                <input
+                                    type="hidden"
+                                    name="csrf_token"
+                                    value="{{ csrf_token() }}"
+                                >
+                                
+                                    <select
+                                        name="status"
+                                        class="status-select {{ enquiry['status']|lower|replace(' ', '-') }}"
+                                        onchange="this.form.submit()"
+                                    >
+
+                                        <option
+                                            value="New"
+                                            {% if enquiry["status"] == "New" %}
+                                                selected
+                                            {% endif %}
+                                        >
+                                            New
+                                        </option>
+
+                                        <option
+                                            value="Contacted"
+                                            {% if enquiry["status"] == "Contacted" %}
+                                                selected
+                                            {% endif %}
+                                        >
+                                            Contacted
+                                        </option>
+
+                                        <option
+                                            value="Quoted"
+                                            {% if enquiry["status"] == "Quoted" %}
+                                                selected
+                                            {% endif %}
+                                        >
+                                            Quoted
+                                        </option>
+
+                                        <option
+                                            value="In Progress"
+                                            {% if enquiry["status"] == "In Progress" %}
+                                                selected
+                                            {% endif %}
+                                        >
+                                            In Progress
+                                        </option>
+
+                                        <option
+                                            value="Completed"
+                                            {% if enquiry["status"] == "Completed" %}
+                                                selected
+                                            {% endif %}
+                                        >
+                                            Completed
+                                        </option>
+
+                                    </select>
+
+                                </form>
+
+                            </td>
+
+
+                            <!-- DATE -->
+                            <td>
+
+                                <small class="enquiry-date">
+
+                                    {{ enquiry["created_at"] }}
+
+                                </small>
+                            
+                            <td>
+                                
+                                <a
+                                    href="{{ url_for('enquiry_details', enquiry_id=enquiry['id']) }}"
+                                    class="view-details-button"
+                                >
+                                    View Details
+                                </a>
+                            </td>
+
+                            </td>
+
+                        </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+    {% else %}
+
+        <div class="empty-enquiries">
+
+            <div class="empty-icon">
+                ✦
+            </div>
+
+            <h3>
+                No enquiries found
+            </h3>
+
+            <p>
+                Customer project requests will appear here
+                when they submit the contact form.
+            </p>
+
+        </div>
+
+    {% endif %}
+
+</section>
+
+</main>
+ <script>
+    setTimeout(function () {
+        const alerts = document.querySelectorAll(".flash-message");
+
+        alerts.forEach(function (alert) {
+            alert.style.transition = "opacity 0.5s ease, transform 0.5s ease";
+            alert.style.opacity = "0";
+            alert.style.transform = "translateX(30px)";
+
+            setTimeout(function () {
+                alert.remove();
+            }, 500);
+        });
+    }, 4000);
+</script>
+<script>
+    document.querySelectorAll(".pipeline-fill").forEach(function (bar) {
+
+        const count = Number(bar.dataset.count);
+        const total = Number(bar.dataset.total);
+
+        if (total > 0 && count > 0) {
+            const percentage = (count / total) * 100;
+            bar.style.width = percentage + "%";
+        } else {
+            bar.style.width = "0%";
+        }
+
+    });
+</script>
+
+</body>
+
+</html>
